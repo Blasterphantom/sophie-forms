@@ -1,0 +1,118 @@
+<div class="container">
+    <fieldset>
+      <legend> User Form</legend>
+      <form [formGroup]="userForm" (ngSubmit)="submitForm()">
+        <div class="form-group">
+          <label for="fName">First Name</label>
+          <input type="text" class="form-control" id="fName" formControlName="fName">
+          <div *ngIf="userForm.get('fName')?.touched && userForm.get('fName')?.errors?.['required']" class="text-danger" style="color: red;;">
+            First Name is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="lName">Last Name</label>
+          <input type="text" class="form-control" id="lName" formControlName="lName">
+          <div *ngIf="userForm.get('lName')?.touched && userForm.get('lName')?.errors?.['required']" class="text-danger" style="color: red;;">
+            Last Name is required.
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="eMail">Email</label>
+            <input type="email" class="form-control" id="eMail" formControlName="eMail">
+            <div *ngIf="userForm.get('eMail')?.touched && userForm.get('eMail')?.errors?.['required']" class="text-danger" style="color: red;;">
+                Email is required.
+              </div>
+              <div *ngIf="userForm.get('eMail')?.touched && userForm.get('eMail')?.errors?.['email']" class="text-danger" style="color: red">
+                Invalid email format.
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" class="form-control" id="address" formControlName="address">
+            <div *ngIf="userForm.get('address')?.touched && userForm.get('address')?.errors?.['required']" class="text-danger" style="color: red;;">
+                Address is required.
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" class="form-control" id="city" formControlName="city">
+            <div *ngIf="userForm.get('city')?.touched && userForm.get('city')?.errors?.['required']" class="text-danger" style="color: red;;">
+                City is required.
+              </div>
+          </div>
+
+          <label for="state">Choose a state:</label>
+          <select id="state" name="state" formControlName="state">
+            <option value="" disabled selected>Select a state</option>
+            <option value="california">California</option>
+            <option value="colorado">Colorado</option>
+            <option value="wyoming">Wyoming</option>
+            <option value="washington">Washington</option>
+            <option value="arizona">Arizona</option>
+            <option value="new york">New York</option>
+            <option value="flordia">Flordia</option>
+            <option value="texas">Texas</option>
+            <option value="nevada">Nevada</option>
+            <option value="kentucky">Kentucky</option>
+          </select>
+          <div *ngIf="userForm.get('state')?.touched && userForm.get('state')?.errors?.['required']" class="text-danger" style="color: red;;">
+            State is required.
+          </div>
+
+          <div class="form-group">
+            <label for="zipCode">Zip Code</label>
+            <input type="text" class="form-control" id="zipCode" formControlName="zipCode">
+            <div *ngIf="userForm.get('zipCode')?.touched && userForm.get('zipCode')?.errors?.['required']" class="text-danger" style="color: red;;">
+                Zip Code is required.
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber">
+            <div *ngIf="userForm.get('phoneNumber')?.touched && userForm.get('phoneNumber')?.errors?.['required']" class="text-danger" style="color: red;;">
+                Phone Number is required.
+              </div>
+              <div *ngIf="userForm.get('phoneNumber')?.touched && userForm.get('phoneNumber')?.errors?.['phoneNumber'] && !userForm.get('phoneNumber')?.errors?.['required']" class="text-danger" style="color: red">
+                Invalid Format
+              </div>
+          </div>
+
+          <label>Favorite Cereal</label>
+          <div>
+            <input type="checkbox" id="cereal1" name="cereal1" value="frosted flakes" formControlName="cereal1">
+            <label for="cereal1">Frosted Flakes</label>
+          </div>
+          <div>
+            <input type="checkbox" id="cereal2" name="cereal2" value="fruit loops" formControlName="cereal2">
+            <label for="cereal2">Fruit Loops</label>
+          </div>
+          <div>
+            <input type="checkbox" id="cereal3" name="cereal3" value="cheerios" formControlName="cereal3">
+            <label for="cereal3">Cheerios</label>
+          </div>
+          <div>
+            <input type="checkbox" id="cereal4" name="cereal4" value="raisin bran" formControlName="cereal4">
+            <label for="cereal4">Raisin Bran</label>
+          </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Submit</button>
+    </form>
+    </fieldset>
+
+    	
+  <div>
+    {{userForm.value | json}}
+    	
+    <div> Dirty: {{userForm.dirty}}</div>
+    <div> Touched: {{userForm.touched}}</div>
+    <div> Pristine: {{userForm.pristine}}</div>
+    <div> Valid: {{userForm.valid}}</div>
+    <div> First Name Touched: {{userForm.get('fName')?.touched}}</div>
+    <div> First Name Dirty: {{userForm.get('fName')?.dirty}}</div>
+    <div> First Name Valid: {{userForm.get('fName')?.valid}}</div>
+  </div>
+
+  <button class="btn btn-primary" (click)="CheckData()">Check Data Submitted</button>
+
+  </div>
+
