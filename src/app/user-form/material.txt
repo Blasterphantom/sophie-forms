@@ -2,15 +2,13 @@
     <fieldset>
       <legend> User Form</legend>
       <form [formGroup]="userForm" (ngSubmit)="submitForm()">
-        
-        <mat-form-field class="form-group">
-          <mat-label for="fName">First Name</mat-label>
-          <input matInput type="text" class="form-control" id="fName" formControlName="fName">
-        </mat-form-field>
-        <div *ngIf="userForm.get('fName')?.touched && userForm.get('fName')?.errors?.['required']" class="text-danger" style="color: red;;">
-          First Name is required.
+        <div class="form-group">
+          <label for="fName">First Name</label>
+          <input type="text" class="form-control" id="fName" formControlName="fName">
+          <div *ngIf="userForm.get('fName')?.touched && userForm.get('fName')?.errors?.['required']" class="text-danger" style="color: red;;">
+            First Name is required.
+          </div>
         </div>
-
         <div class="form-group">
           <label for="lName">Last Name</label>
           <input type="text" class="form-control" id="lName" formControlName="lName">

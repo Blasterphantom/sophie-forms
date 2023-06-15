@@ -8,27 +8,34 @@ import {
   FormArray,
 } from '@angular/forms';
 import { Person } from '../Model/Person';
+import {FloatLabelType, MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.css'],
+  styleUrls: ['./user-form.component.css']
 })
 export class UserFormComponent implements OnInit {
   userForm!: FormGroup;
   savedData: Person | null = null;
+  savedArray:any = [];
 
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.userForm = this.formBuilder.group({
-      fName: ['', [Validators.required, Validators.minLength(2)]],
-      lName: ['', [Validators.required, Validators.minLength(2)]],
+      fName: ['', [Validators.required]],
+      lName: ['', [Validators.required]],
       eMail: ['', [Validators.required, Validators.email]],
       address: ['', [Validators.required, Validators.minLength(2)]],
       city: ['', [Validators.required, Validators.minLength(2)]],
-      state: ['', [Validators.required, Validators.minLength(2)]],
-      zipCode: ['', [Validators.required, Validators.minLength(2)]],
+      state: ['', [Validators.required]],
+      zipCode: ['', [Validators.required, Validators.minLength(5)]],
       phoneNumber: [
         '',
         [
@@ -52,6 +59,7 @@ export class UserFormComponent implements OnInit {
       console.log(this.userForm.value);
       const formData = { ...this.userForm.value };
       this.savedData = formData as Person;
+      this.savedArray.push(this.savedData);
       this.userForm.reset();
       this.ngOnInit();
     }
@@ -69,6 +77,6 @@ export class UserFormComponent implements OnInit {
   }
 
   CheckData(){
-    console.log(this.savedData);
+    console.log(this.savedArray);
   }
 }
